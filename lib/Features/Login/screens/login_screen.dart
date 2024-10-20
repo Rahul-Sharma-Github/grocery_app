@@ -23,6 +23,9 @@ class LoginScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
                   // Logo + Title + Subtitle
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             child: Text(
                               '!DealMart',
-                              style: GoogleFonts.roboto(
+                              style: GoogleFonts.monda(
                                 fontSize: 32.0,
                                 fontWeight: FontWeight.bold,
                                 color: Color(AppColors.logoTextColor),
@@ -69,13 +72,40 @@ class LoginScreen extends StatelessWidget {
                           'Store',
                           style: GoogleFonts.roboto(
                             fontSize: 22.0,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                             color: Color(AppColors.textColor),
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
+
+                  // TextField Title + Form Text fields + Buttons
+                  const SizedBox(height: 100),
+                  // TextField Title
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        fit: FlexFit.loose,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 36.0),
+                          child: Text(
+                            'Shop Smart, Save Big on Groceries!',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.roboto(
+                              fontSize: 26.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(AppColors.textColor),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Form Text fields
+                  
                 ],
               ),
             ),
