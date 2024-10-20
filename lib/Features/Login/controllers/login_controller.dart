@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Home/screens/home_screen.dart';
+
 class LoginController extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
@@ -29,6 +31,8 @@ class LoginController extends GetxController {
       // Perform login logic
       Get.snackbar('Login Successful', 'Welcome back!',
           snackPosition: SnackPosition.BOTTOM);
+
+      Get.to(() => const HomeScreen());
     } else {
       Get.snackbar(
         'Login Failed',
