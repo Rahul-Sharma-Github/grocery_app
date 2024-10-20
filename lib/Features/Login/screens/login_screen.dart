@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_app/utils/colors.dart';
 
+import '../controllers/login_controller.dart';
+
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Container(
@@ -81,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                   ),
 
                   // TextField Title + Form Text fields + Buttons
-                  const SizedBox(height: 100),
+                  SizedBox(height: width < 550 ? 100 : 500),
                   // TextField Title
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,8 +110,171 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // Form Text fields
-                  
+                  const SizedBox(height: 20),
+                  // Form Text fields + Buttons
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(AppColors.textColor),
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 28, horizontal: 32),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Dashes and "Login" Text
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  thickness: 1.2,
+                                  endIndent: 10,
+                                  color:
+                                      Color(AppColors.textFieldInnerTextColor),
+                                ),
+                              ),
+                              Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(
+                                        AppColors.textFieldInnerTextColor)),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  thickness: 1.2,
+                                  indent: 10,
+                                  color:
+                                      Color(AppColors.textFieldInnerTextColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          // Email Field
+                          Obx(() => TextFormField(
+                                onChanged: (value) =>
+                                    controller.email.value = value,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: Color(
+                                          AppColors.textFieldInnerTextColor),
+                                    ),
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.email,
+                                    color: Color(AppColors.textfieldIconColor),
+                                  ),
+                                  labelText: 'Email',
+                                  labelStyle: TextStyle(
+                                    color: Color(
+                                        AppColors.textFieldInnerTextColor),
+                                  ),
+                                  border: const OutlineInputBorder(),
+                                  errorText: controller.isSubmitted.value
+                                      ? controller
+                                          .validateEmail(controller.email.value)
+                                      : null, // Only show error after form submission
+                                ),
+                              )),
+                          const SizedBox(height: 20),
+                          // Password Field
+                          Obx(() => TextFormField(
+                                obscureText: true,
+                                onChanged: (value) =>
+                                    controller.password.value = value,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: Color(
+                                          AppColors.textFieldInnerTextColor),
+                                    ),
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.lock,
+                                    color: Color(AppColors.textfieldIconColor),
+                                  ),
+                                  labelText: 'Password',
+                                  labelStyle: TextStyle(
+                                    color: Color(
+                                        AppColors.textFieldInnerTextColor),
+                                  ),
+                                  border: const OutlineInputBorder(),
+                                  errorText: controller.isSubmitted.value
+                                      ? controller.validatePassword(
+                                          controller.password.value)
+                                      : null, // Only show error after form submission
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          // Forgot Password & Sign Up
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  // Navigate to Forgot Password page
+                                },
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                    color: Color(
+                                        AppColors.forgotPasswordTextColor),
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Navigate to Sign Up page
+                                },
+                                child: Text(
+                                  'Sign Up !',
+                                  style: TextStyle(
+                                    color: Color(
+                                        AppColors.forgotPasswordTextColor),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          // Login Button
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                controller.login();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16.0),
+                                textStyle: const TextStyle(fontSize: 18),
+                                backgroundColor:
+                                    Color(AppColors.loginButtonBackground),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Color(AppColors.textColor),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
