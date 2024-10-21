@@ -32,7 +32,7 @@ class LoginController extends GetxController {
       Get.snackbar('Login Successful', 'Welcome back!',
           snackPosition: SnackPosition.BOTTOM);
 
-      Get.to(() => const HomeScreen());
+      Get.to(() => HomeScreen());
     } else {
       Get.snackbar(
         'Login Failed',
