@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/utils/colors.dart';
 
+import '../../Detail/screens/detail_screen.dart';
 import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -93,7 +94,7 @@ class ProductCard extends StatelessWidget {
         // Navigate to product details page or take some action
         print('${product.name} tapped');
         // Navigation to Details Screen
-        // Get.to(() => DetailScreen());
+        Get.to(() => ProductDetailsScreen(product: product));
       },
       child: Card(
         shape: RoundedRectangleBorder(
