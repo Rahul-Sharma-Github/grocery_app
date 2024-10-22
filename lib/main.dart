@@ -6,7 +6,7 @@ import 'package:grocery_app/Features/Login/screens/login_screen.dart';
 void main() {
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       tools: const [
         ...DevicePreview.defaultTools,
       ],
