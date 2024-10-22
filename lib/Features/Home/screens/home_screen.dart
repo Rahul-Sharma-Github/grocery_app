@@ -37,7 +37,8 @@ class HomeScreen extends StatelessWidget {
                     itemCount: productController.productList.length,
                     itemBuilder: (context, index) {
                       return ProductCard(
-                          product: productController.productList[index]);
+                        product: productController.productList[index],
+                      );
                     },
                   )),
             ),
@@ -91,6 +92,8 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         // Navigate to product details page or take some action
         print('${product.name} tapped');
+        // Navigation to Details Screen
+        // Get.to(() => DetailScreen());
       },
       child: Card(
         shape: RoundedRectangleBorder(
